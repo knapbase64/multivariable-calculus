@@ -47,8 +47,8 @@ The Jacobian matrix of the change of variables and its determinant are
 $$
 \frac{\partial(x,y,z)}{\partial(u,v,w)}=
 \begin{pmatrix}
-\displaystyle \frac{\partial x}{\partial u} & \displaystyle \frac{\partial x}{\partial v} & \displaystyle \frac{\partial x}{\partial w}\\[6pt]
-\displaystyle \frac{\partial y}{\partial u} & \displaystyle \frac{\partial y}{\partial v} & \displaystyle \frac{\partial y}{\partial w}\\[6pt]
+\displaystyle \frac{\partial x}{\partial u} & \displaystyle \frac{\partial x}{\partial v} & \displaystyle \frac{\partial x}{\partial w}\\
+\displaystyle \frac{\partial y}{\partial u} & \displaystyle \frac{\partial y}{\partial v} & \displaystyle \frac{\partial y}{\partial w}\\
 \displaystyle \frac{\partial z}{\partial u} & \displaystyle \frac{\partial z}{\partial v} & \displaystyle \frac{\partial z}{\partial w}
 \end{pmatrix},
 \qquad
@@ -75,8 +75,8 @@ $$
 $$
 \nabla\times\mathbf{A}=\frac{1}{h_u h_v h_w}
 \begin{vmatrix}
-h_u\hat{\mathbf{e}}_u & h_v\hat{\mathbf{e}}_v & h_w\hat{\mathbf{e}}_w\\[4pt]
-\displaystyle \frac{\partial}{\partial u} & \displaystyle \frac{\partial}{\partial v} & \displaystyle \frac{\partial}{\partial w}\\[6pt]
+h_u\hat{\mathbf{e}}_u & h_v\hat{\mathbf{e}}_v & h_w\hat{\mathbf{e}}_w\\
+\displaystyle \frac{\partial}{\partial u} & \displaystyle \frac{\partial}{\partial v} & \displaystyle \frac{\partial}{\partial w}\\
 h_u A_u & h_v A_v & h_w A_w
 \end{vmatrix},
 \qquad
@@ -125,7 +125,7 @@ $$
 \begin{aligned}
 \hat{\boldsymbol \rho}&=\cos\phi\,\hat{\mathbf x}+\sin\phi\,\hat{\mathbf y},&
 \hat{\boldsymbol \phi}&=-\sin\phi\,\hat{\mathbf x}+\cos\phi\,\hat{\mathbf y},&
-\hat{\mathbf z}&=\hat{\mathbf z},\\[4pt]
+\hat{\mathbf z}&=\hat{\mathbf z},\\
 \hat{\mathbf x}&=\cos\phi\,\hat{\boldsymbol \rho}-\sin\phi\,\hat{\boldsymbol \phi},&
 \hat{\mathbf y}&=\sin\phi\,\hat{\boldsymbol \rho}+\cos\phi\,\hat{\boldsymbol \phi},&
 \hat{\mathbf z}&=\hat{\mathbf z}.
@@ -263,3 +263,144 @@ J=r,\\
 \nabla^2 f=\frac{1}{r}\frac{\partial}{\partial r}\!\left(r\frac{\partial f}{\partial r}\right)+\frac{1}{r^2}\frac{\partial^2 f}{\partial \theta^2}.
 \end{aligned}
 $$
+
+---
+
+## Derivations
+
+### Cylindrical Coordinates
+
+Start from the position vector written as a function of cylindrical coordinates,
+$$
+\mathbf r(\rho,\phi,z)=x\,\hat{\mathbf x}+y\,\hat{\mathbf y}+z\,\hat{\mathbf k}
+=\rho\cos\phi\,\hat{\mathbf x}+\rho\sin\phi\,\hat{\mathbf y}+z\,\hat{\mathbf k}.
+$$
+The scale factors are the magnitudes of the coordinate tangent vectors $\mathbf r_\rho=\partial\mathbf r/\partial\rho$, $\mathbf r_\phi=\partial\mathbf r/\partial\phi$, and $\mathbf r_z=\partial\mathbf r/\partial z$. Differentiating gives
+$$
+\mathbf r_\rho=\cos\phi\,\hat{\mathbf x}+\sin\phi\,\hat{\mathbf y},\qquad
+\mathbf r_\phi=-\rho\sin\phi\,\hat{\mathbf x}+\rho\cos\phi\,\hat{\mathbf y},\qquad
+\mathbf r_z=\hat{\mathbf k}.
+$$
+Their magnitudes are
+$$
+h_\rho=|\mathbf r_\rho|=\sqrt{\cos^2\phi+\sin^2\phi}=1,\qquad
+h_\phi=|\mathbf r_\phi|=\rho,\qquad
+h_z=|\mathbf r_z|=1.
+$$
+The associated unit vectors follow by normalization,
+$$
+\hat{\boldsymbol\rho}=\frac{\mathbf r_\rho}{h_\rho}=\cos\phi\,\hat{\mathbf x}+\sin\phi\,\hat{\mathbf y},\quad
+\hat{\boldsymbol\phi}=\frac{\mathbf r_\phi}{h_\phi}=-\sin\phi\,\hat{\mathbf x}+\cos\phi\,\hat{\mathbf y},\quad
+\hat{\mathbf z}=\hat{\mathbf k}.
+$$
+The differential displacement is the linear combination of the coordinate tangents with the differentials,
+$$
+d\boldsymbol\ell=\mathbf r_\rho\,d\rho+\mathbf r_\phi\,d\phi+\mathbf r_z\,dz
+=\hat{\boldsymbol\rho}\,d\rho+\rho\,\hat{\boldsymbol\phi}\,d\phi+\hat{\mathbf z}\,dz.
+$$
+Differential area vectors on the coordinate surfaces come from the appropriate cross products of tangents spanning those surfaces, with the order chosen so that the vector points along the outward normal. On a surface of constant $z$ (a disk), the patch is spanned by $\mathbf r_\rho$ and $\mathbf r_\phi$; thus
+$$
+d\mathbf a_z=(\mathbf r_\rho\times\mathbf r_\phi)\,d\rho\,d\phi
+=\Big(\rho\,\hat{\mathbf k}\Big)\,d\rho\,d\phi
+=\rho\,d\rho\,d\phi\,\hat{\mathbf z}.
+$$
+On a surface of constant $\rho$ (the cylindrical side), the patch is spanned by $\mathbf r_\phi$ and $\mathbf r_z$; hence
+$$
+d\mathbf a_\rho=(\mathbf r_\phi\times\mathbf r_z)\,d\phi\,dz
+=\Big(\rho\cos\phi\,\hat{\mathbf x}+\rho\sin\phi\,\hat{\mathbf y}\Big)\,d\phi\,dz
+=\rho\,d\phi\,dz\,\hat{\boldsymbol\rho}.
+$$
+On a surface of constant $\phi$ (a vertical half-plane), the patch is spanned by $\mathbf r_\rho$ and $\mathbf r_z$; using the order that yields the $\hat{\boldsymbol\phi}$ normal gives
+$$
+d\mathbf a_\phi=(\mathbf r_z\times\mathbf r_\rho)\,dz\,d\rho
+=\hat{\boldsymbol\phi}\,dz\,d\rho
+=d\rho\,dz\,\hat{\boldsymbol\phi}.
+$$
+The differential volume element is the scalar triple product of the three coordinate tangents,
+$$
+d\tau=\big(\mathbf r_\rho\times\mathbf r_\phi\big)\cdot\mathbf r_z\,d\rho\,d\phi\,dz
+=\big(\rho\,\hat{\mathbf k}\big)\cdot\hat{\mathbf k}\,d\rho\,d\phi\,dz
+=\rho\,d\rho\,d\phi\,dz.
+$$
+Equivalently, the Jacobian determinant of the transformation $(\rho,\phi,z)\mapsto(x,y,z)$ is
+$$
+J=\det\!\begin{pmatrix}
+\partial x/\partial\rho & \partial x/\partial\phi & \partial x/\partial z\\
+\partial y/\partial\rho & \partial y/\partial\phi & \partial y/\partial z\\
+\partial z/\partial\rho & \partial z/\partial\phi & \partial z/\partial z
+\end{pmatrix}
+=\det\!\begin{pmatrix}
+\cos\phi & -\rho\sin\phi & 0\\
+\sin\phi & \ \rho\cos\phi & 0\\
+0&0&1
+\end{pmatrix}
+=\rho,
+$$
+so $d\tau=J\,d\rho\,d\phi\,dz=\rho\,d\rho\,d\phi\,dz$. 
+
+### Spherical Coordinates
+
+Start from the position vector written in terms of spherical coordinates with the polar angle $\theta$ measured from $+z$ and the azimuth $\phi$ about $z$:
+$$
+\mathbf r(r,\theta,\phi)=x\,\hat{\mathbf x}+y\,\hat{\mathbf y}+z\,\hat{\mathbf z}
+=r\sin\theta\cos\phi\,\hat{\mathbf x}+r\sin\theta\sin\phi\,\hat{\mathbf y}+r\cos\theta\,\hat{\mathbf z}.
+$$
+The coordinate tangent vectors are $\mathbf r_r=\partial\mathbf r/\partial r$, $\mathbf r_\theta=\partial\mathbf r/\partial\theta$, and $\mathbf r_\phi=\partial\mathbf r/\partial\phi$. Differentiating gives
+$$
+\mathbf r_r=\sin\theta\cos\phi\,\hat{\mathbf x}+\sin\theta\sin\phi\,\hat{\mathbf y}+\cos\theta\,\hat{\mathbf z},\qquad
+\mathbf r_\theta=r\cos\theta\cos\phi\,\hat{\mathbf x}+r\cos\theta\sin\phi\,\hat{\mathbf y}-r\sin\theta\,\hat{\mathbf z},
+$$
+$$
+\mathbf r_\phi=-r\sin\theta\sin\phi\,\hat{\mathbf x}+r\sin\theta\cos\phi\,\hat{\mathbf y}.
+$$
+The scale factors are the magnitudes of these tangents, namely $h_r=\lVert\mathbf r_r\rVert=1$, $h_\theta=\lVert\mathbf r_\theta\rVert=r$, and $h_\phi=\lVert\mathbf r_\phi\rVert=r\sin\theta$. Normalizing the tangents produces the spherical unit vectors,
+$$
+\hat{\mathbf r}=\frac{\mathbf r_r}{h_r}=\sin\theta\cos\phi\,\hat{\mathbf x}+\sin\theta\sin\phi\,\hat{\mathbf y}+\cos\theta\,\hat{\mathbf z},\qquad
+\hat{\boldsymbol\theta}=\frac{\mathbf r_\theta}{h_\theta}=\cos\theta\cos\phi\,\hat{\mathbf x}+\cos\theta\sin\phi\,\hat{\mathbf y}-\sin\theta\,\hat{\mathbf z},
+$$
+$$
+\hat{\boldsymbol\phi}=\frac{\mathbf r_\phi}{h_\phi}=-\sin\phi\,\hat{\mathbf x}+\cos\phi\,\hat{\mathbf y}.
+$$
+Because the $(\hat{\mathbf r},\hat{\boldsymbol\theta},\hat{\boldsymbol\phi})$ triad is orthonormal, the inverse relations follow by the transpose of the same rotation, giving
+$$
+\begin{aligned}
+\hat{\mathbf x}=\sin\theta\cos\phi\,\hat{\mathbf r}+\cos\theta\cos\phi\,\hat{\boldsymbol\theta}-\sin\phi\,\hat{\boldsymbol\phi},\quad \\
+\hat{\mathbf y}=\sin\theta\sin\phi\,\hat{\mathbf r}+\cos\theta\sin\phi\,\hat{\boldsymbol\theta}+\cos\phi\,\hat{\boldsymbol\phi},\quad \\
+\hat{\mathbf z}=\cos\theta\,\hat{\mathbf r}-\sin\theta\,\hat{\boldsymbol\theta}.
+\end{aligned}
+$$
+The differential displacement is the linear combination of tangents weighted by differentials,
+$$
+d\boldsymbol\ell=\mathbf r_r\,dr+\mathbf r_\theta\,d\theta+\mathbf r_\phi\,d\phi
+=dr\,\hat{\mathbf r}+r\,d\theta\,\hat{\boldsymbol\theta}+r\sin\theta\,d\phi\,\hat{\boldsymbol\phi}.
+$$
+Area elements on the coordinate surfaces come from the appropriate cross products. On $r=$ const (a sphere), the patch is spanned by $\mathbf r_\theta$ and $\mathbf r_\phi$, and
+$$
+d\mathbf a_r=(\mathbf r_\theta\times\mathbf r_\phi)\,d\theta\,d\phi
+=r^2\sin\theta\,d\theta\,d\phi\,\hat{\mathbf r}.
+$$
+On $\theta=$ const (a cone), choose the order that yields the $\hat{\boldsymbol\theta}$ normal, for instance $\mathbf r_\phi\times\mathbf r_r$, to obtain
+$$
+d\mathbf a_\theta=(\mathbf r_\phi\times\mathbf r_r)\,d\phi\,dr
+=r\sin\theta\,dr\,d\phi\,\hat{\boldsymbol\theta}.
+$$
+On $\phi=$ const (a half-plane), take $\mathbf r_r\times\mathbf r_\theta$ to get
+$$
+d\mathbf a_\phi=(\mathbf r_r\times\mathbf r_\theta)\,dr\,d\theta
+=r\,dr\,d\theta\,\hat{\boldsymbol\phi}.
+$$
+The differential volume element equals the scalar triple product of the three tangents,
+$$
+d\tau=(\mathbf r_r\times\mathbf r_\theta)\cdot\mathbf r_\phi\,dr\,d\theta\,d\phi
+=r^2\sin\theta\,dr\,d\theta\,d\phi.
+$$
+Equivalently, the Jacobian determinant of the transformation $(r,\theta,\phi)\mapsto(x,y,z)$ computed from
+$$
+\frac{\partial(x,y,z)}{\partial(r,\theta,\phi)}=
+\begin{pmatrix}
+\sin\theta\cos\phi & r\cos\theta\cos\phi & -r\sin\theta\sin\phi\\
+\sin\theta\sin\phi & r\cos\theta\sin\phi & \ \,r\sin\theta\cos\phi\\
+\cos\theta & -r\sin\theta & 0
+\end{pmatrix}
+$$
+is $J=r^2\sin\theta$, so $d\tau=J\,dr\,d\theta\,d\phi$ as above. Taking magnitudes of the area vectors recovers the scalar surface elements on the three coordinate surfaces: for $r=$ const, $dS=r^{2}\sin\theta\,d\theta\,d\phi$; for $\theta=$ const, $dS=r\sin\theta\,dr\,d\phi$; and for $\phi=$ const, $dS=r\,dr\,d\theta$.
